@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import '../App.css';
-import Header from './Header'
 import HomeButton from './HomeButton'
 
 class Register extends Component {
@@ -8,7 +7,6 @@ class Register extends Component {
   render() {
 		return(
 			<div className="App">
-				<Header></Header>
 				<h1>Register</h1>
 				<form className="form">
 					<label for="first_name">First Name</label>

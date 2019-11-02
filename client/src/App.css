@@ -25,10 +25,6 @@
 	margin-top: 5%;
 }
 
-.App-start p {
-	font-size: 30px;
-}
-
 .App-start img {
 	width: 20%;
 	max-width: 75px;
@@ -69,13 +65,14 @@
 }
 
 .Carousel {
-	
+	max-height: 40%;
 }
 
 .Carousel img {
-	width: 30%;
+	width: 150px;
+	margin: 5px;
 }
 
-.App p {
+.Carousel p {
 	text-align: left;
 }

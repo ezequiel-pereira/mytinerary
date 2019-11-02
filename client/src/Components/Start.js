@@ -8,7 +8,7 @@ class Start extends Component {
   render() {
 		return(
 			<div className="App-start">
-				<p>Start Browsing</p>
+				{/* <p>Start Browsing</p> */}
 				<Link to="/cities">
 					<img src={start} alt="start" />
 				</Link>
