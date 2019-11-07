@@ -23,9 +23,9 @@ console.log('Magic happens on port ' + port); */
 
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
-const bodyParser= require('body-parser')
-const cityModel = require('./City.js')
+const db = require('mongoose');
+const bodyParser= require('body-parser');
+const CityModel = require('./City.js');
 
 app.listen(5000, function() {
 	console.log('listening on 5000');
@@ -34,43 +34,39 @@ app.listen(5000, function() {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-mongoose.connect('mongodb+srv://admin:1234@mytinerary-muhl3.mongodb.net/cities?retryWrites=true&w=majority');
+db.connect('mongodb+srv://admin:1234@mytinerary-muhl3.mongodb.net/cities?retryWrites=true&w=majority');
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  // we're connected!
+
+app.post('/city/add', (req, res, next) => {
+		
+	let city = new CityModel ({
+		city: req.body.city,
+		country: req.body.country 
+	})
+
+
+	city.save()
+	.then(doc => {
+		console.log(doc)
+	})
+	.catch(err => {
+		console.error(err)
+	})
+
+	res.send('city added successfully');
+	
 });
 
-/* app.post('/city/add', (req, res, next) => {
-    
-	var name = {
-		city: req.body.city,
-		country: req.body.country
-	};
-
-	db.collection("cities").save(name, (err, result) => {
-		if(err) {
-			console.log(err);
-		}
-
-		res.send('city added successfully');
-	});
-});*/
-
-app.get('/city/all', (req, res, next) => {
-
-	/* if(err) {
-		throw err;
-	}
- */
-	let id = req.params.id;
-	db.collection('cities').find({}).toArray( (err, result) => {
-
-		/* if(err) {
-			throw err;
-		} */
-
-		res.send(result);
-	});
+app.get('/city/all', (req, res) => {
+	
+	CityModel
+  .find({
+    city: 'Barcelona'   // search query
+  })
+  .then(doc => {
+    console.log(doc)
+  })
+  .catch(err => {
+    console.error(err)
+  })
 });
