@@ -7,14 +7,19 @@ import Start from './Start'
 import CitiesCarousel from './CitiesCarousel'
 import Menu from './Menu'
 
+import {Provider} from 'react-redux'
+import store from './../store'
+
 function App() {
   return (
-    <div className="App">
-        <Menu></Menu>
-        <Header></Header>
-        <Start></Start>
-        <CitiesCarousel></CitiesCarousel>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+          <Menu></Menu>
+          <Header></Header>
+          <Start></Start>
+          <CitiesCarousel></CitiesCarousel>
+      </div>
+    </Provider>
   );
 }
 
