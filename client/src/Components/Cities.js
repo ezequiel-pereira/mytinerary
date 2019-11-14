@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 class Cities extends Component {
 
 	 state = {
-		loading: true,
+		loading: null,
 		cities: null
 	};
  
@@ -33,14 +33,15 @@ class Cities extends Component {
 	}
 
   	render() { 
-			return( this.state.loading ? <div>
-																			"Cargando"
-																			<HomeButton></HomeButton>
-																			</div> :
-																			<div>
-																				<CitiesList cities={this.props.cities}></CitiesList>
-																				<HomeButton></HomeButton>
-																			</div>
+			return( this.state.loading ?
+			<div className="App">
+				"Cargando"
+				<HomeButton></HomeButton>
+			</div> :
+			<div className="App">
+				<CitiesList cities={this.props.cities}></CitiesList>
+				<HomeButton></HomeButton>
+			</div>
 			)
 		}
 	}
