@@ -12,7 +12,9 @@ class Cities extends Component {
 
 	 state = {
 		loading: null,
-		cities: null
+		cities: null,
+		filteresCities: [],
+		search: ''
 	};
  
 	/* async componentDidMount() {
@@ -29,7 +31,17 @@ class Cities extends Component {
 	async componentDidMount() {
 		this.props.getCities();
 		//console.log(this.props.cities);
+		this.props.cities.filter(
+			city => {
+				return city.city.indexOf(
+						this.state.search) !== -1
+			}
+		)
 		
+	}
+
+	updateSearch(event) {
+		this.setState({search: event.target.value})
 	}
 
   	render() { 
@@ -39,7 +51,11 @@ class Cities extends Component {
 				<HomeButton></HomeButton>
 			</div> :
 			<div className="App">
-				<CitiesList cities={this.props.cities}></CitiesList>
+				<form className="form">
+					Buscar
+					<input  type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}></input>
+				</form>
+				<CitiesList cities={this.state.filteredCities}></CitiesList>
 				<HomeButton></HomeButton>
 			</div>
 			)

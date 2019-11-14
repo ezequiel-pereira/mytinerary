@@ -8,24 +8,24 @@ const initialState = {
 export default function (state=initialState, action) {
     switch (action.type) {
         case GET_CITIES:
-						return {
-							...state,
-							cities: action.payload,
-							loading: false
-						}
+			return {
+				...state,
+				cities: action.payload,
+				loading: false
+			}
             break;
 
         case ADD_CITIES:
-						return {
-							...state
-						}
-						break;
+			return {
+				...state
+			}
+			break;
 						
-				case LOADING:
-					return {
-						...state,
-						loading: true
-					}
+		case LOADING:
+			return {
+				...state,
+				loading: true
+			}
     
         default:
             return {
