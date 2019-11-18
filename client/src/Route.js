@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import Home from './Components/Home'
 import Cities from './Components/Cities'
 import LoginForm from './Components/LoginForm'
@@ -16,7 +16,7 @@ const routing = (
 			<Route exact path="/register" component={Register} />
 		</Switch>
 	</BrowserRouter>
-);
+); */
 
 
 ReactDOM.render(routing, document.getElementById('root'))
