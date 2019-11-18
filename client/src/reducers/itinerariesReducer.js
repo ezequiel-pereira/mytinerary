@@ -1,16 +1,16 @@
-import { GET_CITIES,  LOADING } from '../actions/types'
+import { GET_ITINERARIES,  LOADING } from '../actions/types'
 
 const initialState = {
-	cities: [],
+	itineraries: [],
 	loading: false
 }
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case GET_CITIES:
+		case GET_ITINERARIES:
 			return {
 				...state,
-				cities: action.payload,
+				itineraries: action.payload,
 				loading: false
 			}
 			break;

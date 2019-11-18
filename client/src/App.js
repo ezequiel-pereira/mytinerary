@@ -3,6 +3,7 @@ import Home from './components/Home'
 import Cities from './components/Cities'
 import LoginForm from './components/LoginForm'
 import Register from './components/Register'
+import Itinerary from './components/Itinerary'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/cities" component={Cities} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/register" component={Register} />
+        <Route exact path="/itineraries" component={Itinerary} />
       </Switch>
     </BrowserRouter>
   ); 

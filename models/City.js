@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 const citySchema = new Schema({
-  city: String,
+  name: String,
 	country: String
 });
 
