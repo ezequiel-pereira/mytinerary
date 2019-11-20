@@ -20,6 +20,7 @@ class Itinerary extends Component {
 	}
 
   	render() {
+		console.log(this.state);
 		
 		return( this.state.loading ?
 			<div className="App">
@@ -27,7 +28,7 @@ class Itinerary extends Component {
 				<HomeButton></HomeButton>
 			</div> :
 			<div className="App">
-				<h1>Ciudad</h1>
+				<h1>City</h1>
                 <p>Availeable MYtineraries:</p>
 				<Activity activities={this.props.itineraries}></Activity>
 				<HomeButton></HomeButton>
