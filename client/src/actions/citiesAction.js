@@ -1,4 +1,4 @@
-import {GET_CITIES, LOADING} from '../actions/types'
+import {GET_CITIES, GET_CITY_BY_NAME, LOADING} from '../actions/types'
 
 export const getCities = () => dispatch => {	
 	dispatch(setLoading())
@@ -8,6 +8,20 @@ export const getCities = () => dispatch => {
 		.then(result =>
 			dispatch({
 				type:GET_CITIES,
+				payload: result
+			})
+		)
+		.catch(e => console.log(e));
+}
+
+export const getCitiesByName = (req, res) => dispatch => {
+	dispatch(setLoading())
+	
+	fetch("http://localhost:5000/city/:name")
+		.then(response => response.json())
+		.then(result =>
+			dispatch({
+				type:GET_CITY_BY_NAME,
 				payload: result
 			})
 		)

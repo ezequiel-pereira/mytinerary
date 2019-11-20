@@ -4,11 +4,12 @@ const cors = require('cors')
 
 const itineraryModel = require('../../models/Itinerary.js');
 
-router.get('/itinerary/all', cors(), async (req, res) => {
-	itineraryModel.find({})
-	.then(itinerary => {
-		res.json(itinerary)
-		res.json({msg: 'This is CORS-enabled for a Single Route'})
+router.get('/itinerary/:name', cors(), async (req, res) => {
+	let cityRequested = req.params.name
+	itineraryModel.findOne({city: cityRequested})
+	.then(itineraries => {
+		res.json(itineraries)
+		//res.json({msg: 'This is CORS-enabled for a Single Route'})
 	})
 });
 
