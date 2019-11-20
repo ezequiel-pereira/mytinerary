@@ -14,6 +14,15 @@ router.get('/city/all', cors(), async (req, res) => {
 	})
 });
 
+router.get('/city/:name', cors(), async (req, res) => {
+    let cityRequested = req.params.name
+	cityModel.findOne({name: cityRequested})
+	.then(city => {
+		res.json(city)
+		//res.json({msg: 'This is CORS-enabled for a Single Route'})
+	})
+});
+
 router.post('/city/add', (req, res) => {
     
 	let newCity = new cityModel ({

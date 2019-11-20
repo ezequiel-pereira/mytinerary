@@ -76,3 +76,13 @@
 .Carousel p {
 	text-align: left;
 }
+
+.hashtags {
+	display: inline;
+	
+}
+
+.activity-info p {
+	display: block;
+	padding-right: 20px;
+}
