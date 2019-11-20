@@ -1,8 +1,9 @@
-import { GET_CITIES,  LOADING } from '../actions/types'
+import { GET_CITIES, GET_CITY_BY_NAME, LOADING } from '../actions/types'
 
 const initialState = {
 	cities: [],
-	loading: false
+	loading: false,
+	city: {}
 }
 
 export default function (state = initialState, action) {
@@ -14,6 +15,14 @@ export default function (state = initialState, action) {
 				loading: false
 			}
 			break;
+		
+		case GET_CITY_BY_NAME:
+		return {
+			...state,
+			city: action.payload,
+			loading: false
+		}
+		break;
 
 		case LOADING:
 			return {

@@ -1,38 +1,36 @@
-import React, { Component } from 'react'
+import React from 'react'
 import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Image from 'react-bootstrap/Image'
+
+import Hashtags from './Hashtags'
 
 const Activity = ({activities}) =>
-  activities.map(act => 
+  activities.map(act =>
     <div>
-        <img src={act.profilePic}/>
-        <li>{act.title}</li>
+		<Container>
+			<Row>
+				<Col>
+					<Image src={act.profilePic} width="100px" height="100px" roundedCircle/>
+					<p>Username</p>
+				</Col>
+				<Col>
+					<Row>
+						<h6>{act.title}</h6>
+					</Row>
+					<Row className="activity-info">
+						<p>Likes: {act.rating}</p>
+						<p>{act.duration} Hours</p>
+						<p className="hashtags">{act.price}</p>
+					</Row>
+					<Hashtags hashtags={act.hashtags}></Hashtags>
+				</Col>
+			</Row>
+		</Container>
     </div>)
 
-/* class Activity extends Component {
-
-	async componentDidMount() {
-		this.props.getItineraries();
-	}
-
-  	render() {
-		
-		return( 
-			<div>
-                <h1>{this.props.itineraries.title}</h1>
-			</div>
-		)
-	}
-}
-
-Activity.propTypes = {
-	getItineraries: PropTypes.func.isRequired,
-	//city: PropTypes.object.isRequired
-}
-
-const mapStateToProps = (state) => ({
-	itineraries: state.itineraries.itineraries
-})*/
-
-export default /* connect(mapStateToProps, {getItineraries})( */Activity//)
+export default Activity
