@@ -4,46 +4,46 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import HomeButton from './HomeButton'
 
 import {connect} from 'react-redux'
-import {getItineraries} from '../actions/itinerariesAction'
+import {getItinerariesByCity} from '../actions/itinerariesAction'
 import PropTypes from 'prop-types'
 import Activity from './Activity'
 
 class Itinerary extends Component {
 
 	state = {
-		loading: null,
-		itineraries: null
+		loading: false,
+		activities: []
 	};
 
 	async componentDidMount() {
-		this.props.getItineraries();
+		let city = this.props.match.params.name
+		this.props.getItinerariesByCity(city)
 	}
 
   	render() {
-		console.log(this.state);
 		
-		return( this.state.loading ?
-			<div className="App">
-				"Cargando"
-				<HomeButton></HomeButton>
-			</div> :
-			<div className="App">
-				<h1>City</h1>
-                <p>Availeable MYtineraries:</p>
-				<Activity activities={this.props.itineraries}></Activity>
-				<HomeButton></HomeButton>
-			</div>
+			return( this.state.loading ?
+				<div className="App">
+					"Cargando"
+					<HomeButton></HomeButton>
+				</div> :
+				<div className="App">
+					<h1>City</h1>
+					<p>Availeable MYtineraries:</p> 
+					<Activity activities={this.props.activities}></Activity>
+					<HomeButton></HomeButton>
+				</div>
 		)
 	}
 }
 
 Itinerary.propTypes = {
-	getItineraries: PropTypes.func.isRequired,
-	//city: PropTypes.object.isRequired
+	getItinerariesByCity: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-	itineraries: state.itineraries.itineraries
+	itineraries: state.itineraries.itineraries,
+	activities:state.itineraries.activitys
 })
 
-export default connect(mapStateToProps, {getItineraries})(Itinerary)
+export default connect(mapStateToProps, {getItinerariesByCity})(Itinerary)
