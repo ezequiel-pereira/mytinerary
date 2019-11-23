@@ -8,6 +8,8 @@ import {connect} from 'react-redux'
 import {getCities} from '../actions/citiesAction'
 import PropTypes from 'prop-types'
 
+import {Link} from 'react-router-dom'
+
 class Cities extends Component {
 
 	state = {
@@ -42,7 +44,8 @@ class Cities extends Component {
 					Buscar
 					<input  type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}></input>
 				</form>
-				<CitiesList cities={filteredCities}></CitiesList>
+				{filteredCities.map(city => <Link key={city._id} to={"/itineraries/" + city.name}><li key={city._id}>{city.name + ', ' + city.country}</li></Link>)}
+				{/* <CitiesList cities={filteredCities}></CitiesList> */}
 				<HomeButton></HomeButton>
 			</div>
 		)

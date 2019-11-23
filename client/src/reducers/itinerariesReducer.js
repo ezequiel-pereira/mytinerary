@@ -1,7 +1,10 @@
-import { GET_ITINERARIES_BY_CITY,  LOADING } from '../actions/types'
+import { GET_ITINERARIES_BY_CITY, LOADING } from '../actions/types'
 
 const initialState = {
+	cities: [],
+	city: {},
 	itineraries: [],
+	activities:[],
 	loading: false
 }
 
@@ -11,7 +14,7 @@ export default function (state = initialState, action) {
 			return {
 				...state,
 				itineraries: action.payload,
-				loading: false
+				loading: true
 			}
 			break;
 

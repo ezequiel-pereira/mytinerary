@@ -14,10 +14,10 @@ export const getCities = () => dispatch => {
 		.catch(e => console.log(e));
 }
 
-export const getCitiesByName = (req, res) => dispatch => {
+export const getCityByName = (city) => dispatch => {
 	dispatch(setLoading())
 	
-	fetch("http://localhost:5000/city/:name")
+	fetch("http://localhost:5000/city/" + city)
 		.then(response => response.json())
 		.then(result =>
 			dispatch({

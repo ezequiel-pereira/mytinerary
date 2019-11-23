@@ -1,10 +1,9 @@
 import {GET_ITINERARIES_BY_CITY, LOADING} from '../actions/types'
 
-
-export const getItineraries = () => dispatch => {
+export const getItinerariesByCity = (city) => dispatch => {
 	dispatch(setLoading())
 
-	fetch("http://localhost:5000/itinerary/:name")
+	fetch("http://localhost:5000/itinerary/" + city)
 		.then(response => response.json())
 		.then(result =>
 			dispatch({

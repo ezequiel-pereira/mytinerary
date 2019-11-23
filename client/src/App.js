@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/cities" component={Cities} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/itineraries" component={Itinerary} />
+        <Route path="/itineraries/:name" component={Itinerary} />
       </Switch>
     </BrowserRouter>
   ); 
