@@ -2,3 +2,5 @@ export const GET_CITIES = 'GET_CITIES'
 export const GET_CITY_BY_NAME = 'GET_CITY_BY_NAME'
 export const GET_ITINERARIES_BY_CITY = 'GET_ITINERARIES_BY_CITY'
 export const LOADING = 'LOADING'
+
+export const GET_ACTIVITIES = 'GET_ACTIVITIES'

@@ -2,8 +2,10 @@ import { GET_CITIES, GET_CITY_BY_NAME, LOADING } from '../actions/types'
 
 const initialState = {
 	cities: [],
-	loading: false,
-	city: {}
+	city: {},
+	itineraries: [],
+	activities:[],
+	loading: false
 }
 
 export default function (state = initialState, action) {

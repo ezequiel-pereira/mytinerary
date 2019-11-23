@@ -1,6 +1,10 @@
 import React from 'react'
 
+import '../styles/Activity.css'
+
 const Hashtags = ({hashtags}) =>
-  hashtags.join('')
+  <div  className="Hashtags">
+    {hashtags.join(' ')}
+  </div>
 
 export default Hashtags

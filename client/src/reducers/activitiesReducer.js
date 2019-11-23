@@ -1,4 +1,4 @@
-import { GET_ITINERARIES_BY_CITY, LOADING } from '../actions/types'
+import { GET_ACTIVITIES, LOADING } from '../actions/types'
 
 const initialState = {
 	cities: [],
@@ -10,10 +10,10 @@ const initialState = {
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case GET_ITINERARIES_BY_CITY:
+		case GET_ACTIVITIES:
 			return {
 				...state,
-				itineraries: action.payload,
+				activities: action.payload,
 				loading: true
 			}
 			break;
