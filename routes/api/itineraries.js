@@ -16,10 +16,15 @@ router.get('/itinerary/:name', cors(), async (req, res) => {
 router.post('/itinerary/add', (req, res) => {
     
 	let newItinerary = new itineraryModel ({
-		
+		title: req.body.title,
+		profilePic: req.body.profilePic,
+		rating: req.body.rating,
+		duration: req.body.duration,
+		price: req.body.price,
+		hashtags: req.body.hashtags
 	});
 
-	newItinerary.save().then(city => res.json(city))
+	newItinerary.save().then(itinerary => res.json(itinerary))
 }); 
 
 module.exports = router

@@ -4,14 +4,14 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-//import start from '../img/start.png';
+import userIcon from '../img/userIcon.png';
 
 class Menu extends Component {
 
   render() {
 		return(
 			<Navbar bg="light" expand="lg">
-        <NavDropdown title="User" id="basic-nav-dropdown">
+        <NavDropdown title={<img src={userIcon} width="30px" height="30px"/>} id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Create account</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Login</NavDropdown.Item>
         </NavDropdown>
