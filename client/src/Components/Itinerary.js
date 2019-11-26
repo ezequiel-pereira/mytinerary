@@ -39,16 +39,18 @@ class Itinerary extends Component {
 				<HomeButton></HomeButton>
 			</div> :
 			<div className="App">
-				<h1>{this.props.city.name}</h1>
-				<p>Availeable MYtineraries:</p>
+				<Container>
+					<h1>{this.props.city.name}</h1>
+					<h6>Availeable MYtineraries:</h6>
+				</Container>
 				{this.props.itineraries.map(itinerarie => 
 				<Container className="Itinerary">
 					<Row>
-						<Col sm={4}>
+						<Col /* sm={4} */>
 							<Image src={itinerarie.profilePic} width="50px" height="50px" roundedCircle/>
 							<p>Username</p>
 						</Col>
-						<Col sm={8}>
+						<Col /* sm={6} */>
 							<Row>
 								<h6>{itinerarie.title}</h6>
 							</Row>

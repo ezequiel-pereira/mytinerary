@@ -4,14 +4,16 @@ const bodyParser = require('body-parser');
 
 const db = require('./keys.js').mongoURI;
 
-const cities = require('./routes/api/cities.js'/* ,'.routes/api/itineraries.js' */)
+const cities = require('./routes/api/cities.js')
 const itineraries = require('./routes/api/itineraries.js')
 
 const app = express();
 
+app.use(bodyParser.json());
+
 app.use('/', cities)
 app.use('/', itineraries)
-app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})

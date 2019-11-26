@@ -25,12 +25,17 @@ router.get('/city/:name', cors(), async (req, res) => {
 
 router.post('/city/add', (req, res) => {
     
-	let newCity = new cityModel ({
-		name: req.body.name,
-		country: req.body.country
-	});
+	const newCity = new cityModel (
+		{
+			name: req.body.name,
+			country: req.body.country
+		}
+	);
 
-	newCity.save().then(city => res.json(city))
-}); 
+	newCity.save()
+	.then(city => res.json(city))
+	.catch(err => res.status(500).send("Server error"))
+
+});
 
 module.exports = router
