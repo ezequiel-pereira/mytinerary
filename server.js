@@ -10,11 +10,10 @@ const itineraries = require('./routes/api/itineraries.js')
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use('/', cities)
 app.use('/', itineraries)
-
-app.use(bodyParser.urlencoded({extended: true}));
 
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(console.log('Database conected'))

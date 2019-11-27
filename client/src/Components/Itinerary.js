@@ -74,7 +74,7 @@ class Itinerary extends Component {
 							<Card.Body>
 								<Row>
 									<Col>
-										<Activity></Activity>
+										<Activity city={this.props.city.name}></Activity>
 									</Col>
 								</Row>
 							</Card.Body>
@@ -95,7 +95,7 @@ Itinerary.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-	city: state.city.city,
+	city: state.city.cities,
 	itineraries: state.itineraries.itineraries
 })
 
