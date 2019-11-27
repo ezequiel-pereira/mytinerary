@@ -11,7 +11,7 @@ class Menu extends Component {
   render() {
 		return(
 			<Navbar bg="light" expand="lg">
-        <NavDropdown title={<img src={userIcon} width="30px" height="30px"/>} id="basic-nav-dropdown">
+        <NavDropdown title={<img src={userIcon} width="30px" height="30px" alt=""user_image/>} id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Create account</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Login</NavDropdown.Item>
         </NavDropdown>
