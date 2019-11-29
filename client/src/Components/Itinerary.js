@@ -5,10 +5,11 @@ import '../styles/Itinerary.css'
 
 import HomeButton from './HomeButton'
 import Activity from './Activity'
+import Menu from './Menu'
 
 import {connect} from 'react-redux'
 import {getItinerariesByCity} from '../actions/itinerariesAction'
-import {getCityByName} from '../actions/citiesAction'
+import {getCityById} from '../actions/citiesAction'
 import PropTypes from 'prop-types'
 
 import Container from 'react-bootstrap/Container'
@@ -27,9 +28,9 @@ class Itinerary extends Component {
 	};
 
 	async componentDidMount() {
-		let city = this.props.match.params.name
-		this.props.getCityByName(city)
-		this.props.getItinerariesByCity(city)
+		let cityId = this.props.match.params.name
+		this.props.getCityById(cityId)
+		this.props.getItinerariesByCity(cityId)
 	}
 
   	render() {
@@ -39,28 +40,29 @@ class Itinerary extends Component {
 				<HomeButton></HomeButton>
 			</div> :
 			<div className="App">
+				<Menu></Menu>
 				<Container>
 					<h1>{this.props.city.name}</h1>
 					<h6>Availeable MYtineraries:</h6>
 				</Container>
-				{this.props.itineraries.map(itinerarie => 
+				{this.props.itineraries.map(itinerary => 
 				<Container className="Itinerary">
 					<Row>
 						<Col /* sm={4} */>
-							<Image src={itinerarie.profilePic} width="50px" height="50px" roundedCircle/>
+							<Image src={itinerary.profilePic} width="50px" height="50px" roundedCircle/>
 							<p>Username</p>
 						</Col>
 						<Col /* sm={6} */>
 							<Row>
-								<h6>{itinerarie.title}</h6>
+								<h6>{itinerary.title}</h6>
 							</Row>
 							<Row className="Itinerary-info">
-								<p>Likes: {itinerarie.rating}</p>
-								<p>{itinerarie.duration} Hours</p>
-								<p>{itinerarie.price}</p>
+								<p>Likes: {itinerary.rating}</p>
+								<p>{itinerary.duration} Hours</p>
+								<p>{itinerary.price}</p>
 							</Row>
 							<Row>
-								{itinerarie.hashtags.join('  ')}
+								{itinerary.hashtags.join('  ')}
 							</Row>
 						</Col>
 					</Row>
@@ -74,7 +76,7 @@ class Itinerary extends Component {
 							<Card.Body>
 								<Row>
 									<Col>
-										<Activity city={this.props.city.name}></Activity>
+										<Activity itineraryId={itinerary._id}></Activity>
 									</Col>
 								</Row>
 							</Card.Body>
@@ -95,8 +97,8 @@ Itinerary.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-	city: state.city.cities,
+	city: state.cities.city,
 	itineraries: state.itineraries.itineraries
 })
 
-export default connect(mapStateToProps, {getItinerariesByCity, getCityByName})(Itinerary)
+export default connect(mapStateToProps, {getItinerariesByCity, getCityById})(Itinerary)

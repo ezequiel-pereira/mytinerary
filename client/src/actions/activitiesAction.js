@@ -1,13 +1,13 @@
-import {GET_ACTIVITIES, LOADING} from '../actions/types'
+import {GET_ACTIVITIES_BY_ITINERARY_ID, LOADING} from '../actions/types'
 
-export const getActivities = (activity) => dispatch => {
+export const getActivitiesByItineraryId = (itineraryId) => dispatch => {
 	dispatch(setLoading())
 
-	fetch("http://localhost:5000/itinerary/" + city)
+	fetch("http://localhost:5000/activity/" + itineraryId)
 		.then(response => response.json())
 		.then(result =>
 			dispatch({
-				type: GET_ACTIVITIES,
+				type: GET_ACTIVITIES_BY_ITINERARY_ID,
 				payload:result
 			})
 		)

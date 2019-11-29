@@ -1,10 +1,8 @@
 import { GET_ITINERARIES_BY_CITY, LOADING } from '../actions/types'
 
 const initialState = {
-	cities: [],
 	city: {},
 	itineraries: [],
-	activities:[],
 	loading: false
 }
 

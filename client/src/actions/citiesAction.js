@@ -1,4 +1,4 @@
-import {GET_CITIES, GET_CITY_BY_NAME, LOADING} from '../actions/types'
+import {GET_CITIES, GET_CITY_BY_ID, LOADING} from '../actions/types'
 
 export const getCities = () => dispatch => {	
 	dispatch(setLoading())
@@ -14,14 +14,14 @@ export const getCities = () => dispatch => {
 		.catch(e => console.log(e));
 }
 
-export const getCityByName = (city) => dispatch => {
+export const getCityById = (cityId) => dispatch => {
 	dispatch(setLoading())
 	
-	fetch("http://localhost:5000/city/" + city)
+	fetch("http://localhost:5000/city/" + cityId)
 		.then(response => response.json())
 		.then(result =>
 			dispatch({
-				type:GET_CITY_BY_NAME,
+				type:GET_CITY_BY_ID,
 				payload: result
 			})
 		)

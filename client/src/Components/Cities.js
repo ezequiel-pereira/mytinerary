@@ -3,6 +3,7 @@ import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import HomeButton from './HomeButton'
 /* import CitiesList from './CitiesList' */
+import Menu from './Menu'
 
 import {connect} from 'react-redux'
 import {getCities} from '../actions/citiesAction'
@@ -40,6 +41,7 @@ class Cities extends Component {
 				<HomeButton></HomeButton>
 			</div> :
 			<div className="App">
+				<Menu></Menu>
 				<form className="form">
 					Buscar
 					<input  type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}></input>
@@ -58,7 +60,7 @@ Cities.propTypes = {
 }
 
 const mapStateToProps = (state) => ({
-	cities: state.city.cities
+	cities: state.cities.cities
 })
 
 export default connect(mapStateToProps, {getCities})(Cities)

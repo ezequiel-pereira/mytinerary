@@ -4,16 +4,17 @@ const cors = require('cors')
 
 const activityModel = require('../../models/Activity.js');
 
-router.get('/activity/:name', cors(), async (req, res) => {
-	let cityRequested = req.params.name
-	activityModel.find({city: cityRequested})
+router.get('/activity/:itineraryId', cors(), async (req, res) => {
+	let itineraryId = req.params.itineraryId
+	activityModel.find({_id: itineraryId})
+	/* .populate("itinerary") */
 	.then(activity => {
 		res.json(activity)
 		//res.json({msg: 'This is CORS-enabled for a Single Route'})
 	})
 });
 
-router.post('/activity/add', (req, res) => {
+router.post('/activity/add', cors(), (req, res) => {
     
 	let newActivity = new activityModel ({
 		title: req.body.title,
