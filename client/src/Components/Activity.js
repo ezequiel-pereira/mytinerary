@@ -1,49 +1,43 @@
-import React from 'react'
+import React, {Component} from 'react'
 import '../styles/Activity.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Container from 'react-bootstrap/Container'
-/* import Image from 'react-bootstrap/Image'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col' */
 
-const Activity = () =>{
+import {connect} from 'react-redux'
+import {getActivitiesByItineraryId} from '../actions/activitiesAction'
+import PropTypes from 'prop-types'
 
-  return (
-    <div>
-		<h6 className="Activities-title">Activities</h6>
-		<Container className="Activities">
-			<Container className="Activities-carousel">
-				<Container className="Activity">
-					Activity
+class Activity extends Component {
+
+	async componentDidMount() {
+		let itineraryId = this.props.itineraryId
+		this.props.getActivitiesByItineraryId(itineraryId)
+	}
+
+	render() {
+
+
+		return (
+			<div>
+				<h6 className="Activities-title">Activities</h6>
+				<Container className="Activities">
+					<Container className="Activities-carousel">
+						<Container className="Activity">
+							activity
+						</Container>
+					</Container>
 				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-				<Container className="Activity">
-					Activity
-				</Container>
-			</Container>
-		</Container>
-	</div>)
+			</div>)
+	}
 }
 
-export default Activity
+Activity.propTypes = {
+	getActivitiesByItineraryId: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = (state) => ({
+	activities: state.activities.activities
+})
+
+export default connect(mapStateToProps, {getActivitiesByItineraryId})(Activity)

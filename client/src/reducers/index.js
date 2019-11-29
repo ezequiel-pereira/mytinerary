@@ -4,7 +4,7 @@ import itinerariesReducer from './itinerariesReducer'
 import activitiesReducer from './activitiesReducer'
 
 export default combineReducers({
-    city: citiesReducer,
+    cities: citiesReducer,
     itineraries: itinerariesReducer,
     activities: activitiesReducer
 })

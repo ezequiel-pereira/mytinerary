@@ -4,11 +4,7 @@
  
  const activitySchema = new Schema({
    name: String,
-   address: String,
-   image: String,
-   rating: Number,
-   price: Number,
-   comment: String
+   itinerary: {type: Schema.Types.ObjectId, ref: "Itinerary"}
  });
  
  // Compile model from schema

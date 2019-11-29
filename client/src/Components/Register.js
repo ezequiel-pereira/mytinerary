@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import '../App.css';
 import HomeButton from './HomeButton'
+import Menu from './Menu'
 
 class Register extends Component {
 
   render() {
 		return(
 			<div className="App">
+				<Menu></Menu>
 				<h1>Register</h1>
 				<form className="form">
 					<label for="first_name">First Name</label>
