@@ -4,17 +4,15 @@ const cors = require('cors')
 
 const itineraryModel = require('../../models/Itinerary.js');
 
-router.get('/itinerary/:name', cors(), async (req, res) => {
-	let cityRequested = req.params.name
-	itineraryModel.find({city: cityRequested})
-	/* .populate("city") */
+router.get('/itinerary/:cityId', cors(), async (req, res) => {
+	let cityId = req.params.cityId
+	itineraryModel.find({city: cityId})
+	.populate("activity")
 	.then(itineraries => {
 		res.json(itineraries)
-		//res.json({msg: 'This is CORS-enabled for a Single Route'})
+		res.json({msg: 'This is CORS-enabled for a Single Route'})
 	})
 });
-
-// /itinerary/5dcffe031c9d44000037eaa8
 
 router.post('/itinerary/add', (req, res) => {
     
@@ -30,11 +28,11 @@ router.post('/itinerary/add', (req, res) => {
 	newItinerary.save(itineraries).then(itinerary => res.json(itinerary))
 }); 
 
-router.get('/itinerary/add/all', (req, res) => {
+/* router.get('/itinerary/add/all', (req, res) => {
 	const data = require('../../itinerariesdata')
     console.log('data', data);
 	
 	itineraryModel.insertMany(data).then(itinerary => res.json(itinerary))
-}); 
+});  */
 
 module.exports = router

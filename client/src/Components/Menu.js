@@ -21,7 +21,9 @@ class Menu extends Component {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
             <Link to="/home"><Nav.Link href="#home">Home</Nav.Link></Link>
-            <Link to="/login">Link</Link>
+            <Link to="/cities"><Nav.Link href="#home">Home</Nav.Link></Link>
+            <Link to="/login"><Nav.Link href="#home">Home</Nav.Link></Link>
+            <Link to="/register"><Nav.Link href="#home">Home</Nav.Link></Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
