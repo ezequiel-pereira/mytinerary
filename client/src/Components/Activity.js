@@ -11,21 +11,23 @@ import PropTypes from 'prop-types'
 class Activity extends Component {
 
 	async componentDidMount() {
-		let itineraryId = this.props.itineraryId
-		this.props.getActivitiesByItineraryId(itineraryId)
+		/* let itineraryId = this.props.itineraryId
+		console.log("componenent   " +  itineraryId)
+		this.props.getActivitiesByItineraryId(itineraryId) */
 	}
 
 	render() {
-
-
 		return (
 			<div>
 				<h6 className="Activities-title">Activities</h6>
 				<Container className="Activities">
 					<Container className="Activities-carousel">
-						<Container className="Activity">
-							activity
-						</Container>
+						{
+						this.props.activity.map( act =>
+							<Container className="Activity">
+								{act.name}
+							</Container>)
+						}
 					</Container>
 				</Container>
 			</div>)

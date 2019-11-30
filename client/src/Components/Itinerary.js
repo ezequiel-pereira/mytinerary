@@ -76,7 +76,7 @@ class Itinerary extends Component {
 							<Card.Body>
 								<Row>
 									<Col>
-										<Activity itineraryId={itinerary._id}></Activity>
+										<Activity activity={itinerary.activity}></Activity>
 									</Col>
 								</Row>
 							</Card.Body>

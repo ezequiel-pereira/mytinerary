@@ -9,7 +9,8 @@ const itinerarySchema = new Schema({
     duration: Number,
     price: String,
     hashtags: Array,
-    city: {type: Schema.Types.ObjectId, ref: "City"}
+    city: {type: Schema.Types.ObjectId, ref: "City"},
+    activity: [{type: Schema.Types.ObjectId, ref: "Activity"}]
 });
 
 module.exports = mongoose.model('Itinerary', itinerarySchema, 'itineraries');
