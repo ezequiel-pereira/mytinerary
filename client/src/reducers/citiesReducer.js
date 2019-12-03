@@ -14,7 +14,6 @@ export default function (state = initialState, action) {
 				cities: action.payload,
 				loading: false
 			}
-			/* break; */
 		
 		case GET_CITY_BY_ID:
 			return {
@@ -22,7 +21,6 @@ export default function (state = initialState, action) {
 				city: action.payload,
 				loading: false
 			}
-		/* break; */
 
 		case LOADING:
 			return {
@@ -34,6 +32,5 @@ export default function (state = initialState, action) {
 			return {
 				...state
 			}
-			/* break; */
 	}
 }
