@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import '../App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import HomeButton from './HomeButton'
-/* import CitiesList from './CitiesList' */
 import Menu from './Menu'
 
 import {connect} from 'react-redux'
@@ -28,7 +27,7 @@ class Cities extends Component {
 	}
 
   	render() {
-
+		console.log(this.props.cities)
 		let filteredCities = this.props.cities.filter(
 			(city) => {
 				return city.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
@@ -47,7 +46,6 @@ class Cities extends Component {
 					<input  type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}></input>
 				</form>
 				{filteredCities.map(city => <Link key={city._id} to={"/itineraries/" + city._id}><li key={city._id}>{city.name + ', ' + city.country}</li></Link>)}
-				{/* <CitiesList cities={filteredCities}></CitiesList> */}
 				<HomeButton></HomeButton>
 			</div>
 		)
