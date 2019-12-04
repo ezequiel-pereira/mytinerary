@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 
 const db = require('./keys.js').mongoURI;
 
-const cities = require('./routes/api/cities.js')
-const itineraries = require('./routes/api/itineraries.js')
-const activities = require('./routes/api/activities.js')
+const cities = require('./routes/api/cities')
+const itineraries = require('./routes/api/itineraries')
+const activities = require('./routes/api/activities')
 const users = require('./routes/api/users')
 
 const app = express();

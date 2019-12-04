@@ -46,7 +46,7 @@ class Itinerary extends Component {
 					<h6>Availeable MYtineraries:</h6>
 				</Container>
 				{this.props.itineraries.map(itinerary => 
-				<Container className="Itinerary">
+				<Container className="Itinerary" key={itinerary._id}>
 					<Row>
 						<Col /* sm={4} */>
 							<Image src={itinerary.profilePic} width="50px" height="50px" roundedCircle/>
