@@ -24,7 +24,7 @@ class Activity extends Component {
 					<Container className="Activities-carousel">
 						{
 						this.props.activity.map( act =>
-							<Container className="Activity">
+							<Container className="Activity" key={act._id}>
 								{act.name}
 							</Container>)
 						}
