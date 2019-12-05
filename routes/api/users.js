@@ -10,7 +10,7 @@ const { check, validationResult } = require('express-validator')
 const userModel = require('../../models/User')
 
 const key = require('../../keys.js').secretOrKey
-const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken')
 
 router.post('/user/add', cors(), [
 	check('username').isAlphanumeric().withMessage('Username must be alphanumeric'),
@@ -19,16 +19,23 @@ router.post('/user/add', cors(), [
 	],
 	(req, res) => {
 
-	bcrypt.hash(req.body.password, saltRounds, function (err, hash){
+	const newUser = new userModel ({
+		username: req.body.username,
+		email: req.body.email,
+		password: req.body.password,
+		profilePic: req.body.profilePic
+	});
 
-		const newUser = new userModel ({
-			username: req.body.username,
-			email: req.body.email,
-			password: hash,
-			profilePic: req.body.profilePic
-		});
+	bcrypt.hash(req.body.password, saltRounds, function (error, hash){
+
+		if(error) throw error
+
+		newUser.password = hash
 	
 		newUser.save().then(user => res.json(user))
+		.then(user => {
+			res.json(user.username)
+		}).catch(e => console.log(e))
 	})
 	
 	const errors = validationResult(req)
@@ -38,19 +45,16 @@ router.post('/user/add', cors(), [
 });
 
 router.post('/user/login', cors(), (req, res) => {
-
-	const options = {expiresIn: 2592000}
-	
 	userModel.findOne({email: req.body.email})
 	.then(user =>
 		bcrypt.compare(req.body.password, user.password, function(err){
 			if (!err) {
-				res.send('OK')
+				/* res.send('OK') */
 				/* res.redirect('/home') */
 				jwt.sign(
-					payload,
-					key.secretOrKey,
-					options,
+					{id: user._id},
+					key,
+					{expiresIn: 2592000},
 					(err, token) => {
 					  if(err){
 						res.json({
@@ -66,13 +70,11 @@ router.post('/user/login', cors(), (req, res) => {
 					}
 				  );
 			} else {
-				res.send('NO')
+				res.send('Error')
 				/* res.redirect('/login') */
 			}
 		})
-
-
-	)
+	).catch(e => console.log(e))
 });
 
 /* router.get('/user/:itineraryId', cors(), async (req, res) => {
