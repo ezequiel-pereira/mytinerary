@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const cors = require('cors')
+const passport = require('../../passport')
 
 const bcrypt = require('bcrypt')
 const saltRounds = 10
@@ -76,6 +77,19 @@ router.post('/user/login', cors(), (req, res) => {
 		})
 	).catch(e => console.log(e))
 });
+
+router.get(
+	"/test",
+	passport.authenticate("jwt", { session: false }),
+	(req, res) => {
+	  userModel
+		.findOne({ _id: req.user.id })
+		.then(user => {
+		  res.json(user);
+		})
+		.catch(err => res.status(404).json({ error: "User does not exist!" }));
+	}
+);
 
 /* router.get('/user/:itineraryId', cors(), async (req, res) => {
 	let itineraryId = req.params.itineraryId
