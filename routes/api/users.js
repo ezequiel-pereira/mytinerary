@@ -91,6 +91,14 @@ router.get(
 	}
 );
 
+router.get("/google"), (req, res) => {
+	  
+)
+
+router.get("/google/redirect"), (req, res) => {
+	  
+)
+	
 /* router.get('/user/:itineraryId', cors(), async (req, res) => {
 	let itineraryId = req.params.itineraryId
 	console.log("route   " + itineraryId);

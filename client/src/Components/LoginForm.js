@@ -3,6 +3,10 @@ import '../App.css';
 import HomeButton from './HomeButton'
 import Menu from './Menu'
 
+import Container from 'react-bootstrap/Container'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
 class LoginForm extends Component {
 
 	constructor(props) {
@@ -37,13 +41,31 @@ class LoginForm extends Component {
 			<div className="App">
 				<Menu></Menu>
 				<h1>Login</h1>
-				<form className="form" onSubmit={this.handleSubmit}>
-					<label for="userName">Username</label>
+				<Container>
+					<Form>
+						<Form.Group controlId="formBasicEmail">
+							<Form.Label>Email address</Form.Label>
+							<Form.Control type="email" placeholder="Enter email" />
+							<Form.Text className="text-muted">
+							We'll never share your email with anyone else.
+							</Form.Text>
+						</Form.Group>
+						<Form.Group controlId="formBasicPassword">
+							<Form.Label>Password</Form.Label>
+							<Form.Control type="password" placeholder="Password" />
+						</Form.Group>
+						<Button variant="primary" type="submit">
+							Submit
+						</Button>
+					</Form>
+				</Container>
+				{/* <form className="form" onSubmit={this.handleSubmit}>
+					<label htmlFor="userName">Username</label>
 					<input type="text" name="userName" value={this.state.userName} onChange={this.handleInputChange} required />
-					<label for="password">Password</label>
+					<label htmlFor="password">Password</label>
       				<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} required />
 					<input type="submit" value="Submit" required />
-				</form>
+				</form> */}
                 <HomeButton></HomeButton>
 			</div>
 		)
