@@ -1,37 +1,24 @@
 import axios from 'axios'
 import {ADD_USER, LOADING} from '../actions/types'
 
-export const addUser = ({ username, email, password, profilePic }) => dispatch => {
+export const addUser = (newUser) => dispatch => {
 	dispatch(setLoading())
-
+	console.log('add user action');
+		
 	const config = {
 		headers: {
 			'Content-Type': 'application/json'
 		}
 	}
 
-	const body = JSON.stringify({ username, email, password, profilePic })
-
-	axios.post("http://localhost:5000/user/add", config, body)
+	axios.post("http://localhost:5000/user/add", newUser, config)
 		.then(res =>  
 			dispatch({
 				type: ADD_USER,
 				payload: res.data
 			})
-		.catch(err => {
-			console.log(err);
-		})
 		)
-
-	/* fetch("http://localhost:5000/user/add")
-		.then(response => response.json())
-		.then(result =>
-			dispatch({
-				type:ADD_USER,
-				payload: result
-			})
-		)
-		.catch(e => console.log(e)); */
+		.catch(err => { console.log(err) })
 }
 
 export const setLoading = () => {

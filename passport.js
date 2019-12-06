@@ -7,7 +7,7 @@ const passport = require('passport')
 //options object
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey= key;
+opts.secretOrKey = key;
 
 //JWT strategy
 module.exports = passport.use(
