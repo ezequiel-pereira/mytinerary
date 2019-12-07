@@ -4,8 +4,8 @@ import HomeButton from './HomeButton'
 import Menu from './Menu'
 
 /* import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'*/
-import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button' */
 
 import {connect} from 'react-redux'
 import {addUser} from '../actions/userAction'

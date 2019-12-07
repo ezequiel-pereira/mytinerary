@@ -11,6 +11,7 @@ const cities = require('./routes/api/cities')
 const itineraries = require('./routes/api/itineraries')
 const activities = require('./routes/api/activities')
 const users = require('./routes/api/users')
+const auth = require('./routes/api/auth')
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/', cities)
 app.use('/', itineraries)
 app.use('/', activities)
 app.use('/', users)
+app.use('/', auth)
 
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(console.log('Database conected'))
