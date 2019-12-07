@@ -36,6 +36,10 @@ class LoginForm extends Component {
     	event.preventDefault();
 	}
 
+	signGoogle() {
+		window.location.href='http://localhost:5000/auth/google'
+	}
+
   	render() {
 		return(
 			<div className="App">
@@ -56,6 +60,9 @@ class LoginForm extends Component {
 						</Form.Group>
 						<Button variant="primary" type="submit">
 							Submit
+						</Button>
+						<Button variant="primary" className="btn-block" onClick={this.signGoogle.bind(this)}>
+							Log in with Google
 						</Button>
 					</Form>
 				</Container>
