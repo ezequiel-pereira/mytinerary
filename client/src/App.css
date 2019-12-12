@@ -21,15 +21,6 @@
 	padding-top: 5%;
 }
 
-.App-start {
-	margin-top: 5%;
-}
-
-.App-start img {
-	width: 20%;
-	max-width: 75px;
-}
-
 .App-login {
   margin-top: 5%;
   width: 100%;
@@ -38,19 +29,6 @@
 .App-login a {
 	display: inline-block;
 	margin: 10px;
-}
-
-.App-home {
-	width: 100%;
-	position: fixed;
-	bottom: 10px;
-	margin: auto;
-	background-color: white;
-}
-
-.App-home img {
-	width: 10%;
-	max-width: 50px;
 }
 
 .form label, form input {

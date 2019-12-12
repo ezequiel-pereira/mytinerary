@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport')
+const path = require('path')
 
 //db config
 const db = require('./keys.js').mongoURI;
@@ -28,6 +29,14 @@ app.use('/', itineraries)
 app.use('/', activities)
 app.use('/', users)
 app.use('/', auth)
+
+if (process.env.NODE_ENV === 'production') {
+    //Set statis folder
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 .then(console.log('Database conected'))

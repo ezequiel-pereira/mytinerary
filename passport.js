@@ -4,6 +4,7 @@ const userModel = require('./models/User')
 const keys = require('./keys.js')
 const passport = require('passport')
 
+
 //Options object
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -26,62 +27,48 @@ module.exports = passport.use(
 //Google strategy
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-module.exports = passport.use(new GoogleStrategy(
+passport.serializeUser((user,cb) => cb(null, user))
+
+passport.deserializeUser((id,cb) => {
+  
+  userModel.findById(id)
+  .then(user => cb(null, user))
+  cb(null, user)
+})
+
+passport.use(new GoogleStrategy(
   {
     clientID: keys.GOOGLE_CLIENT_ID,
     clientSecret: keys.GOOGLE_CLIENT_SECRET,
     callbackURL: "/auth/google/callback"
   },
-  function(accessToken, refreshToken, profile, cb) {
-    /* let email =  profile.emails
-    profile.emails.forEach(email => emails.push(email.value) */
-      
+  function(accessToken, refreshToken, profile, cb) {      
     userModel.findOne({ email: profile._json.email })
     .then(user => {
       if (!user) {
-        console.log('ififififififif');
-        
-        userModel.save({
+        console.log('New user');
+
+        const newUser = new userModel({
           googleId: profile._json.sub,
           first_name: profile._json.given_name,
           last_name: profile._json.family_name,
           profilePic: profile._json.picture,
           email: profile._json.email
         })
+
+        newUser.save()
+
+        cb(null, newUser)
+
+        .then(user => console.log(user))
+        .catch(e => console.log(e))
+      } else {
+        console.log('El usuario ya existe');
+        cb(null, user)
       }
-    })
+    }),
+    function (err, user) {
+      return cb(err, user);
+    }
   }
 ));
-
-/* {
-        id: '101411363007172779817',
-        displayName: 'Ezequiel Pereira',
-        name: { familyName: 'Pereira', givenName: 'Ezequiel' },
-        emails: [ { value: 'ezequielpereira92@gmail.com', verified: true } ],
-        photos: [
-          {
-            value: 'https://lh5.googleusercontent.com/-ParY5ew2TXs/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rd16jUasr4dJrtXbg826mW1r3pTsQ/photo.jpg'
-          }
-        ],
-        provider: 'google',
-        _raw: '{\n' +
-          '  "sub": "101411363007172779817",\n' +
-          '  "name": "Ezequiel Pereira",\n' +
-          '  "given_name": "Ezequiel",\n' +
-          '  "family_name": "Pereira",\n' +
-          '  "picture": "https://lh5.googleusercontent.com/-ParY5ew2TXs/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rd16jUasr4dJrtXbg826mW1r3pTsQ/photo.jpg",\n' +
-          '  "email": "ezequielpereira92@gmail.com",\n' +
-          '  "email_verified": true,\n' +
-          '  "locale": "es-419"\n' +
-          '}',
-        _json: {
-          sub: '101411363007172779817',
-          name: 'Ezequiel Pereira',
-          given_name: 'Ezequiel',
-          family_name: 'Pereira',
-          picture: 'https://lh5.googleusercontent.com/-ParY5ew2TXs/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rd16jUasr4dJrtXbg826mW1r3pTsQ/photo.jpg',
-          email: 'ezequielpereira92@gmail.com',
-          email_verified: true,
-          locale: 'es-419'
-        }
-      [0] } */

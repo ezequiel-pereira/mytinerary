@@ -3,9 +3,11 @@ import '../App.css';
 import HomeButton from './HomeButton'
 import Menu from './Menu'
 
-/* import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button' */
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 import {connect} from 'react-redux'
 import {addUser} from '../actions/userAction'
@@ -54,73 +56,70 @@ class Register extends Component {
 		return(
 			<div className="App">
 				<Menu></Menu>
-				{/* <Container> */}
+				<Container>
 					<h1>Crate account</h1>
-
-				<form onSubmit={this.handleSubmit}>
-					<label htmlFor="username">Username</label>
-					<input type="text" name="username" value={this.state.username} onChange={this.handleInputChange} required />
-
-					<label htmlFor="email">Email</label>
-					<input type="email" name="email" value={this.state.email} onChange={this.handleInputChange} required />
-
-					<label htmlFor="password">Password</label>
-					<input type="password" name="password" value={this.state.password} onChange={this.handleInputChange} required />
-
-					<label htmlFor="profilePic">Profile picture</label>
-					<input type="profilePic" name="profilePic" value={this.state.profilePic} onChange={this.handleInputChange} required />
-
-					{/* <label htmlFor="firstName">First Name</label>
-					<input type="text" name="first_name" value={this.state.userName} onChange={this.handleInputChange} required />
-					
-					<label htmlFor="lastName">Last Name</label>
-					<input type="text" name="last_name" value={this.state.userName} onChange={this.handleInputChange} required /> */}
-
-					<input type="submit" value="Submit" required></input>
-
-					
-				</form>
-					{/* <Form onSubmit={this.handleSubmit}>
-						<Form.Group controlId="formBasicUsername">
-							<Form.Label>Username</Form.Label>
-							<Form.Control type="text" placeholder="Enter username" />
+					<Form onSubmit={this.handleSubmit}>
+						<Form.Group as={Row}>
+							<Form.Label column xs={4} htmlFor="profilePic">Add photo</Form.Label>
+							<Col xs={8}>
+								<Form.Control type="text" name="profilePic" placeholder="Enter image url" value={this.state.profilePic} onChange={this.handleInputChange} required />
+							</Col>
 						</Form.Group>
-						<Form.Group controlId="formBasicPassword">
-							<Form.Label>Password</Form.Label>
-							<Form.Control type="password" placeholder="Password" />
+						<Form.Group as={Row}>
+							<Form.Label column xs={4} htmlFor="username" >Username</Form.Label>
+							<Col xs={8}>
+								<Form.Control type="text" name="username" placeholder="Enter username" value={this.state.username} onChange={this.handleInputChange} required />
+							</Col>
 						</Form.Group>
-						<Form.Group controlId="formBasicEmail">
-							<Form.Label>Email address</Form.Label>
-							<Form.Control type="email" placeholder="Enter email" />
+						<Form.Group as={Row}>
+							<Form.Label column xs={4} htmlFor="password">Password</Form.Label>
+							<Col xs={8}>
+								<Form.Control type="password" name ="password" placeholder="Password" value={this.state.password} onChange={this.handleInputChange} required />
+							</Col>
 						</Form.Group>
-						<Form.Group controlId="exampleForm.ControlSelect2">
-							<Form.Label>Select country</Form.Label>
-							<Form.Control as="select">
-								<option>England</option>
-								<option>France</option>
-								<option>Germany</option>
-								<option>Holland</option>
-								<option>Ireland</option>
-								<option>Spain</option>
-								<option>United States</option>
-							</Form.Control>
+						<Form.Group as={Row}>
+							<Form.Label column xs={4} htmlFor="email">Email address</Form.Label>
+							<Col xs={8}>
+								<Form.Control type="email" name="email" placeholder="Enter email" value={this.state.email} onChange={this.handleInputChange} required />
+							</Col>
+						</Form.Group>
+						<Form.Group as={Row}>
+							<Form.Label column xs={4} htmlFor="country" >Select country</Form.Label>
+							<Col xs={8}>
+								<Form.Control as="select" name="country" value={this.state.country} onChange={this.handleInputChange} required>
+									<option>England</option>
+									<option>France</option>
+									<option>Germany</option>
+									<option>Holland</option>
+									<option>Ireland</option>
+									<option>Spain</option>
+									<option>United States</option>
+								</Form.Control>
+							</Col>
   						</Form.Group>
-						<Form.Group controlId="formBasicName">
-							<Form.Label>First Name</Form.Label>
-							<Form.Control type="text" placeholder="Enter name" />
+						<Form.Group as={Row}>
+							<Form.Label column xs={4} htmlFor="firstName">First Name</Form.Label>
+							<Col xs={8}>
+								<Form.Control type="text" name ="firstName" placeholder="Enter name" value={this.state.firstName} onChange={this.handleInputChange} required />
+							</Col>
 						</Form.Group>
-						<Form.Group controlId="formBasicLastName">
-							<Form.Label>Last Name</Form.Label>
-							<Form.Control type="text" placeholder="Enter last name" />
+						<Form.Group as={Row}>
+							<Form.Label column xs={4} htmlFor="lastName">Last Name</Form.Label>
+							<Col xs={8}>
+								<Form.Control type="text" name="lastName" placeholder="Enter last name" value={this.state.lastName} onChange={this.handleInputChange} required />
+							</Col>
 						</Form.Group>
-						<Form.Group controlId="formBasicCheckbox">
-							<Form.Check type="checkbox" label="I agree to MYtinerarie´s" />
+							<Form.Group as={Row} htmlFor="terms">
+								<Col xs={2}>
+									<Form.Check astype="checkbox" name="terms" value={this.state.tos} onChange={this.handleInputChange} required />
+								</Col>
+							<Form.Label column xs={10}>I agree to MYtinerarie´s Terms & Conditions</Form.Label>
 						</Form.Group>
-						<Button variant="primary" type="submit">
+						<Button variant="primary" type="submit" required className="mt-4 btn-block">
 							OK
 						</Button>
 					</Form>
-				</Container> */}
+				</Container>
 				<HomeButton></HomeButton>
 			</div>
 		)
