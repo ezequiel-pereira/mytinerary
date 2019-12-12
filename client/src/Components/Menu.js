@@ -23,7 +23,7 @@ class Menu extends Component {
             <LinkContainer to="/home"><Nav.Link href="#home">Home</Nav.Link></LinkContainer>
             <LinkContainer to="/cities"><Nav.Link href="#home">Cities</Nav.Link></LinkContainer>
             <LinkContainer to="/login"><Nav.Link href="#home">Login</Nav.Link></LinkContainer>
-            <LinkContainer to="/register"><Nav.Link href="#home">Register</Nav.Link></LinkContainer>
+            <LinkContainer to="/register"><Nav.Link href="#home">Create account</Nav.Link></LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

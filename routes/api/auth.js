@@ -1,8 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const passport = require('../../passport')
+
 const userModel = require('../../models/User')
-require('../../passport')
+
+const key = require('../../keys.js').secretOrKey
+const jwt = require('jsonwebtoken')
 
 router.get('/auth/google',
     /* (req, res) => { res.send('google login') }, */
@@ -11,9 +14,24 @@ router.get('/auth/google',
 router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    // Successful authentication, redirect home.
-    res.send('funciona')
-    /* res.redirect('/home'); */
+    userModel.findOne({email: req.body.email})
+    .then(user =>
+      jwt.sign(
+        {id: req.body.id},
+        key,
+        {expiresIn: 2592000},
+        (err, token) => {
+          if(err){
+          res.json({
+            success: false,
+            token: "There was an error"
+          });
+          }else {
+            // Successful authentication, redirect home.
+            res.redirect('http://localhost:3000/home/' + token)
+          }
+        })
+    ).catch(e => console.log(e))
   }
 );
 

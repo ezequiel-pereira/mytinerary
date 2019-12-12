@@ -8,7 +8,6 @@ class Header extends Component {
 		return(
 			<header className="App-header">
 				<img src={logo} alt="logo" />
-				<p>Find your perfect trip, designed by insiders how know and love their cities.</p>
 			</header>
 		)
   }

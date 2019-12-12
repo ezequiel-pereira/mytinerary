@@ -8,3 +8,5 @@ export const LOADING = 'LOADING'
 export const GET_ACTIVITIES_BY_ITINERARY_ID = 'GET_ACTIVITIES_BY_ITINERARY_ID'
 
 export const ADD_USER = 'ADD_USER'
+
+export const LOGIN = 'LOGIN'

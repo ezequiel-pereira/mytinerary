@@ -36,6 +36,7 @@ router.post('/user/add', cors(), [
 		newUser.save().then(user => res.json(user))
 		.then(user => {
 			res.json(user.username)
+			res.redirect('/login')
 		}).catch(e => console.log(e))
 	})
 	
@@ -50,8 +51,6 @@ router.post('/user/login', cors(), (req, res) => {
 	.then(user =>
 		bcrypt.compare(req.body.password, user.password, function(err){
 			if (!err) {
-				/* res.send('OK') */
-				/* res.redirect('/home') */
 				jwt.sign(
 					{id: user._id},
 					key,

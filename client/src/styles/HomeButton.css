@@ -1,0 +1,12 @@
+.Home-button {
+	width: 100%;
+	position: fixed;
+	bottom: 10px;
+	margin: auto;
+	background-color: white;
+}
+
+.Home-button img {
+	width: 10%;
+	max-width: 50px;
+}

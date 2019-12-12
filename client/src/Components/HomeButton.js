@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import '../styles/HomeButton.css'
 import homeIcon from '../img/homeIcon.png';
 import {Link} from 'react-router-dom'
 
@@ -6,7 +7,7 @@ class HomeButton extends Component {
 
   render() {
 		return(
-			<div className="App-home">
+			<div className="Home-button">
 				<Link to="/home">
 					<img src={homeIcon} alt="home" />
 				</Link>

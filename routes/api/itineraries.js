@@ -10,7 +10,6 @@ router.get('/itinerary/:cityId', cors(), async (req, res) => {
 	.populate("activity")
 	.then(itineraries => {
 		res.json(itineraries)
-		res.json({msg: 'This is CORS-enabled for a Single Route'})
 	})
 });
 

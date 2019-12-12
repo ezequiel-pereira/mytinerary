@@ -18,6 +18,7 @@ import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 class Itinerary extends Component {
 
@@ -41,18 +42,22 @@ class Itinerary extends Component {
 			</div> :
 			<div className="App">
 				<Menu></Menu>
-				<Container>
-					<h1>{this.props.city.name}</h1>
+				<Jumbotron style={{backgroundImage:"url('https://picsum.photos/200')", backgroundSize: "cover"}}>
+					<Container>
+						<h1 className="text-white">{this.props.city.name}</h1>
+					</Container>
+				</Jumbotron>
+				<Container /* className="overflow-auto" */>
 					<h6>Availeable MYtineraries:</h6>
 				</Container>
 				{this.props.itineraries.map(itinerary => 
 				<Container className="Itinerary" key={itinerary._id}>
 					<Row>
-						<Col /* sm={4} */>
+						<Col xs={4}>
 							<Image src={itinerary.profilePic} width="50px" height="50px" roundedCircle/>
-							<p>Username</p>
+							<p>{itinerary.username}</p>
 						</Col>
-						<Col /* sm={6} */>
+						<Col xs={8}>
 							<Row>
 								<h6>{itinerary.title}</h6>
 							</Row>
