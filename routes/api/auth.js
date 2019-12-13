@@ -14,10 +14,15 @@ router.get('/auth/google',
 router.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    userModel.findOne({email: req.body.email})
-    .then(user =>
+    console.log(req.user);
       jwt.sign(
-        {id: req.body.id},
+        {
+          id: req.user._id,
+          email: req.user.email,
+          first_name: req.user.first_name,
+          last_name: req.user.last_name,
+          profilePic: req.user.profilePic
+        },
         key,
         {expiresIn: 2592000},
         (err, token) => {
@@ -31,7 +36,6 @@ router.get('/auth/google/callback',
             res.redirect('http://localhost:3000/home/' + token)
           }
         })
-    ).catch(e => console.log(e))
   }
 );
 

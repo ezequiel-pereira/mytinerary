@@ -16,6 +16,7 @@ class Menu extends Component {
         <NavDropdown title={<img src={userIcon} width="30px" height="30px" alt="user_image" />} id="basic-nav-dropdown">
               <LinkContainer to="/register"><NavDropdown.Item href="#action/3.1">Create account</NavDropdown.Item></LinkContainer>
               <LinkContainer to="/login"><NavDropdown.Item href="#action/3.2">Login</NavDropdown.Item></LinkContainer>
+              <NavDropdown.Item href="#action/3.2"/*  onClick={this.logout.bind(this)} */>Logout</NavDropdown.Item>
         </NavDropdown>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const cors = require('cors')
+const passport = require('../../passport')
 
 const itineraryModel = require('../../models/Itinerary.js');
 
-router.get('/itinerary/:cityId', cors(), async (req, res) => {
+router.get('/itinerary/:cityId', async (req, res) => {
 	let cityId = req.params.cityId
 	itineraryModel.find({city: cityId})
 	.populate("activity")
@@ -13,7 +13,7 @@ router.get('/itinerary/:cityId', cors(), async (req, res) => {
 	})
 });
 
-router.post('/itinerary/add', (req, res) => {
+router.post('/itinerary/add', passport.authenticate("jwt", { session: false, failureRedirect: '/login' }), (req, res) => {
     
 	let newItinerary = new itineraryModel ({
 		title: req.body.title,
