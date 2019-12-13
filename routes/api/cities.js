@@ -1,10 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const cors = require('cors')
+const passport = require('../../passport')
 
 const cityModel = require('../../models/City.js');
 
-router.get('/city/all', cors(), async (req, res) => {
+router.get('/city/all', passport.authenticate("jwt", { session: false, failureRedirect: '/login' }), async (req, res) => {
     
 	cityModel.find({})
 	.then(cities => {
@@ -12,7 +12,7 @@ router.get('/city/all', cors(), async (req, res) => {
 	})
 });
 
-router.get('/city/:id', cors(), async (req, res) => {
+router.get('/city/:id', passport.authenticate("jwt", { session: false }), async (req, res) => {
 	let cityId = req.params.id
 	cityModel.findOne({_id: cityId})
 	.then(city => {

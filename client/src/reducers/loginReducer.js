@@ -1,7 +1,7 @@
-import { LOGIN, LOADING } from '../actions/types'
+import { LOGIN, LOGOUT, LOADING } from '../actions/types'
 
 const initialState = {
-    login: {},
+    user: {},
     loading: false
 }
 
@@ -10,16 +10,16 @@ export default function (state = initialState, action) {
 		case LOGIN:
 			return {
 				...state,
-				login: action.payload,
+				user: action.payload,
 				loading: false
 			}
 		
-		/* case GET_LOGIN:
+		case LOGOUT:
 			return {
 				...state,
 				user: action.payload,
 				loading: false
-			} */
+			}
 
 		case LOADING:
 			return {

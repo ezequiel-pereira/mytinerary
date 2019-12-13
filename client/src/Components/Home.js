@@ -12,15 +12,17 @@ import PropTypes from 'prop-types'
 
 class Home extends Component {
 
-  getToken() {
+  saveToken() {
     let token = this.props.match.params.token
-    login(token)
+    localStorage.setItem('token', `${token}`)
+    console.log(localStorage.getItem('token'))
+    this.props.login()
   }
   
   render() {
     return (
         <div>
-          {this.getToken()}
+          {this.saveToken()}
             <Menu></Menu>
             <Header></Header>
             <Start></Start>

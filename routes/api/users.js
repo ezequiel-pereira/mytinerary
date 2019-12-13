@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const cors = require('cors')
 const passport = require('../../passport')
 
 const bcrypt = require('bcrypt')
@@ -13,7 +12,7 @@ const userModel = require('../../models/User')
 const key = require('../../keys.js').secretOrKey
 const jwt = require('jsonwebtoken')
 
-router.post('/user/add', cors(), [
+router.post('/user/add', [
 	check('username').isAlphanumeric().withMessage('Username must be alphanumeric'),
 	check('email').isEmail().withMessage('Invalid email'),
 	check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
@@ -46,7 +45,7 @@ router.post('/user/add', cors(), [
 	}
 });
 
-router.post('/user/login', cors(), (req, res) => {
+router.post('/user/login', (req, res) => {
 	userModel.findOne({email: req.body.email})
 	.then(user =>
 		bcrypt.compare(req.body.password, user.password, function(err){
@@ -68,7 +67,7 @@ router.post('/user/login', cors(), (req, res) => {
 						});
 					  }
 					}
-				  );
+				);
 			} else {
 				res.send('Error')
 				/* res.redirect('/login') */
@@ -86,25 +85,5 @@ router.get("/test", passport.authenticate("jwt", { session: false }), (req, res)
 	.catch(err => res.status(404).json({ error: "User does not exist!" }));
 	}
 );
-	
-/* router.get('/user/:itineraryId', cors(), async (req, res) => {
-	let itineraryId = req.params.itineraryId
-	console.log("route   " + itineraryId);
-	
-	userModel.find({itinerary: itineraryId})
-	populate("itinerary")
-	.then(user => {
-		res.json(user)
-		console.log(user)
-		res.json({msg: 'This is CORS-enabled for a Single Route'})
-	})
-});
-
-router.get('/user/cargar', (req, res) => {
-	const data = require('../../activitiesdta')
-    console.log('data', data);
-	
-	userModel.insertMany(data).then(itinerary => res.json(itinerary))
-});*/
 
 module.exports = router 
