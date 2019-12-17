@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../../passport')
 
-const userModel = require('../../models/User')
-
 const key = require('../../keys.js').secretOrKey
 const jwt = require('jsonwebtoken')
 
@@ -12,7 +10,7 @@ router.get('/auth/google',
     passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }),
   function(req, res) {
     console.log(req.user);
       jwt.sign(

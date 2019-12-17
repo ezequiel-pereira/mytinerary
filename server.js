@@ -1,8 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const express = require('express')
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const passport = require('passport')
 const path = require('path')
+const cors = require('cors')
 
 //db config
 const db = require('./keys.js').mongoURI;
@@ -11,18 +12,18 @@ const db = require('./keys.js').mongoURI;
 const cities = require('./routes/api/cities')
 const itineraries = require('./routes/api/itineraries')
 const activities = require('./routes/api/activities')
-const users = require('./routes/api/users')
+const users = require('./routes/api/register')
 const auth = require('./routes/api/auth')
 
-const app = express();
+const app = express()
 
 //passport middleware
 app.use(passport.initialize());
-const cors = require('cors')
+
 app.use(cors());
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use('/', cities)
 app.use('/', itineraries)
@@ -30,6 +31,7 @@ app.use('/', activities)
 app.use('/', users)
 app.use('/', auth)
 
+//Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
     //Set statis folder
     app.use(express.static('client/build'))

@@ -6,23 +6,22 @@ import CitiesCarousel from './CitiesCarousel'
 import Menu from './Menu'
 
 import {connect} from 'react-redux'
-import { login } from '../actions/loginAction';
+import { googleLogin } from '../actions/loginAction';
 import PropTypes from 'prop-types'
-
 
 class Home extends Component {
 
-  saveToken() {
-    let token = this.props.match.params.token
-    localStorage.setItem('token', `${token}`)
-    console.log(localStorage.getItem('token'))
-    this.props.login()
+  componentDidMount() {
+    if (!this.props.match.params.token === undefined) {
+      localStorage.setItem('token', `${this.props.match.params.token}`)
+      console.log(localStorage.getItem('token'))
+      this.props.googleLogin()
+    }
   }
   
   render() {
     return (
         <div>
-          {this.saveToken()}
             <Menu></Menu>
             <Header></Header>
             <Start></Start>
@@ -33,11 +32,11 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  login: PropTypes.func.isRequired
+  googleLogin: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
   login: state.login.login
 })
 
-export default connect(mapStateToProps, {login})(Home);
+export default connect(mapStateToProps, {googleLogin})(Home);

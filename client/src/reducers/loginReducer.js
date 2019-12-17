@@ -1,7 +1,7 @@
 import { LOGIN, LOGOUT, LOADING } from '../actions/types'
 
 const initialState = {
-    user: {},
+	user: null,
     loading: false
 }
 

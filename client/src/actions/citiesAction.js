@@ -1,14 +1,21 @@
+import axios from 'axios'
 import {GET_CITIES, GET_CITY_BY_ID, LOADING} from '../actions/types'
+
+var config = {
+	headers: {
+		'Content-Type': 'application/json',
+		'Authorization': `bearer ${localStorage.getItem('token')}`
+	}
+}
 
 export const getCities = () => dispatch => {	
 	dispatch(setLoading())
 	
-	fetch("http://localhost:5000/city/all")
-		.then(response => response.json())
-		.then(result =>
+	axios.get("http://localhost:5000/city/all", config)
+		.then(data =>
 			dispatch({
 				type:GET_CITIES,
-				payload: result
+				payload: data.data
 			})
 		)
 		.catch(e => console.log(e));
@@ -17,12 +24,11 @@ export const getCities = () => dispatch => {
 export const getCityById = (cityId) => dispatch => {
 	dispatch(setLoading())
 	
-	fetch("http://localhost:5000/city/" + cityId)
-		.then(response => response.json())
-		.then(result =>
+	axios.get("http://localhost:5000/city/" + cityId, config)
+		.then(data =>
 			dispatch({
 				type:GET_CITY_BY_ID,
-				payload: result
+				payload: data.data
 			})
 		)
 		.catch(e => console.log(e));

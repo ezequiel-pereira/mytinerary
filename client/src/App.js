@@ -1,9 +1,9 @@
 import React from 'react'
-import Home from './components/Home'
-import Cities from './components/Cities'
-import LoginForm from './components/LoginForm'
-import Register from './components/Register'
-import Itinerary from './components/Itinerary'
+import Home from './Components/Home'
+import Cities from './Components/Cities'
+import LoginForm from './Components/LoginForm'
+import Register from './Components/Register'
+import Itinerary from './Components/Itinerary'
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {

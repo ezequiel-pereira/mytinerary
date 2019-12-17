@@ -14,7 +14,6 @@ export default function (state = initialState, action) {
 				itineraries: action.payload,
 				loading: true
 			}
-			/* break; */
 
 		case LOADING:
 			return {
@@ -26,6 +25,5 @@ export default function (state = initialState, action) {
 			return {
 				...state
 			}
-			/* break; */
 	}
 }
