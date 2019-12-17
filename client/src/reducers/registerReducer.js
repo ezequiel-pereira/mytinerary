@@ -1,20 +1,20 @@
-import { LOGIN, LOGOUT, LOADING } from '../actions/types'
+import { ADD_USER } from '../actions/types'
 
 const initialState = {
-	user: null,
+    user: {},
     loading: false
 }
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case LOGIN:
+		case ADD_USER:
 			return {
 				...state,
 				user: action.payload,
 				loading: false
 			}
 		
-		case LOGOUT:
+		case GET_USER:
 			return {
 				...state,
 				user: action.payload,

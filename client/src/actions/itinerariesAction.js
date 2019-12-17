@@ -1,14 +1,21 @@
+import axios from 'axios'
 import {GET_ITINERARIES_BY_CITY, LOADING} from '../actions/types'
 
-export const getItinerariesByCity = (city) => dispatch => {
+var config = {
+	headers: {
+		'Content-Type': 'application/json',
+		'Authorization': `bearer ${localStorage.getItem('token')}`
+	}
+}
+
+export const getItinerariesByCity = (cityId) => dispatch => {
 	dispatch(setLoading())
 
-	fetch("http://localhost:5000/itinerary/" + city)
-		.then(response => response.json())
-		.then(result =>
+	axios.get("http://localhost:5000/itinerary/" + cityId, config)
+		.then(data =>
 			dispatch({
 				type: GET_ITINERARIES_BY_CITY,
-				payload:result
+				payload: data.data
 			})
 		)
 		.catch(e => console.log(e))

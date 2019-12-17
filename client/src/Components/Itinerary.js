@@ -12,13 +12,7 @@ import {getItinerariesByCity} from '../actions/itinerariesAction'
 import {getCityById} from '../actions/citiesAction'
 import PropTypes from 'prop-types'
 
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
-import Accordion from 'react-bootstrap/Accordion'
-import Card from 'react-bootstrap/Card'
-import Jumbotron from 'react-bootstrap/Jumbotron'
+import { Container, Row, Col, Image, Accordion, Card, Jumbotron } from 'react-bootstrap'
 
 class Itinerary extends Component {
 

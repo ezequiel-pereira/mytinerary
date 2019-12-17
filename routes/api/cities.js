@@ -4,7 +4,7 @@ const passport = require('../../passport')
 
 const cityModel = require('../../models/City.js');
 
-router.get('/city/all', passport.authenticate("jwt", { session: false, failureRedirect: '/login' }), async (req, res) => {
+router.get('/city/all', passport.authenticate("jwt", { session: false }), async (req, res) => {
     
 	cityModel.find({})
 	.then(cities => {

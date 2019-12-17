@@ -1,24 +1,17 @@
-import { LOGIN, LOGOUT, LOADING } from '../actions/types'
+import { AUTH, LOADING } from '../actions/types'
 
 const initialState = {
-	user: null,
-    loading: false
+	auth: false,
+	loading: false
 }
 
 export default function (state = initialState, action) {
 	switch (action.type) {
-		case LOGIN:
+		case AUTH:
 			return {
 				...state,
-				user: action.payload,
-				loading: false
-			}
-		
-		case LOGOUT:
-			return {
-				...state,
-				user: action.payload,
-				loading: false
+				auth: false,
+				loading: true
 			}
 
 		case LOADING:

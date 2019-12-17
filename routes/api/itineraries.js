@@ -4,16 +4,16 @@ const passport = require('../../passport')
 
 const itineraryModel = require('../../models/Itinerary.js');
 
-router.get('/itinerary/:cityId', async (req, res) => {
+router.get('/itinerary/:cityId', passport.authenticate("jwt", { session: false, failureRedirect: '/login' }), async (req, res) => {
 	let cityId = req.params.cityId
 	itineraryModel.find({city: cityId})
 	.populate("activity")
 	.then(itineraries => {
 		res.json(itineraries)
 	})
-});
+})
 
-router.post('/itinerary/add', passport.authenticate("jwt", { session: false, failureRedirect: '/login' }), (req, res) => {
+/* router.post('/itinerary/add', (req, res) => {
     
 	let newItinerary = new itineraryModel ({
 		title: req.body.title,
@@ -25,7 +25,7 @@ router.post('/itinerary/add', passport.authenticate("jwt", { session: false, fai
 	});
 
 	newItinerary.save(itineraries).then(itinerary => res.json(itinerary))
-}); 
+});  */
 
 /* router.get('/itinerary/add/all', (req, res) => {
 	const data = require('../../itinerariesdata')

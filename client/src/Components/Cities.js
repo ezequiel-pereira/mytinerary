@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import '../App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import '../styles/Cities.css'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import HomeButton from './HomeButton'
 import Menu from './Menu'
 
@@ -10,11 +10,13 @@ import PropTypes from 'prop-types'
 
 import {Link} from 'react-router-dom'
 
+import {Form, Container} from 'react-bootstrap'
+
 class Cities extends Component {
 
 	state = {
 		loading: null,
-		cities: null,
+		cities: [null],
 		search: ''
 	};
 
@@ -40,11 +42,18 @@ class Cities extends Component {
 			</div> :
 			<div className="App">
 				<Menu></Menu>
-				<form className="form">
-					Buscar
-					<input  type="text" value={this.state.search} onChange={this.updateSearch.bind(this)}></input>
-				</form>
-				{filteredCities.map(city => <Link key={city._id} to={"/itineraries/" + city._id}><li key={city._id}>{city.name + ', ' + city.country}</li></Link>)}
+				<Container className="mt-3">
+					<Form>
+						<Form.Group>
+							<Form.Control type="text" placeholder="Search..." value={this.state.search} onChange={this.updateSearch.bind(this)} />
+						</Form.Group>
+					</Form>
+				
+				{filteredCities.map(city =>
+					<Link key={city._id} to={"/itineraries/" + city._id}>
+						<li key={city._id}>{city.name + ', ' + city.country}</li>
+					</Link>)}
+				</Container>
 				<HomeButton></HomeButton>
 			</div>
 		)

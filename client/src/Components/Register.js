@@ -3,14 +3,10 @@ import '../App.css';
 import HomeButton from './HomeButton'
 import Menu from './Menu'
 
-import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import { Container, Form, Button, Row, Col } from 'react-bootstrap'
 
 import {connect} from 'react-redux'
-import {addUser} from '../actions/userAction'
+import {addUser} from '../actions/registerAction'
 import PropTypes from 'prop-types'
 
 class Register extends Component {
