@@ -9,7 +9,8 @@
    password: String,
    profilePic: String,
    first_name: String,
-   last_name: String
+   last_name: String,
+   favourites: [{type: Schema.Types.ObjectId, ref: "Itinerary"}]
  });
  
  // Compile model from schema

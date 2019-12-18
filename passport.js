@@ -64,11 +64,9 @@ passport.use(new GoogleStrategy(
         .catch(e => console.log(e))
       } else {
         console.log('El usuario ya existe');
+        console.log(user)
         cb(null, user)
       }
-    }),
-    function (err, user) {
-      return cb(err, user);
-    }
+    })
   }
 ));

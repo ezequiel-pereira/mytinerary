@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import '../styles/Activity.css'
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Container from 'react-bootstrap/Container'
 
 class Activity extends Component {

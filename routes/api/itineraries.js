@@ -4,7 +4,7 @@ const passport = require('../../passport')
 
 const itineraryModel = require('../../models/Itinerary.js');
 
-router.get('/itinerary/:cityId', passport.authenticate("jwt", { session: false, failureRedirect: '/login' }), async (req, res) => {
+router.get('/itinerary/:cityId', /* passport.authenticate("jwt", { session: false, failureRedirect: '/login' }), */ async (req, res) => {
 	let cityId = req.params.cityId
 	itineraryModel.find({city: cityId})
 	.populate("activity")

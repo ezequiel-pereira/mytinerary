@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Carousel from 'react-bootstrap/Carousel'
-import Container from 'react-bootstrap/Container'
+import { Row, Col, Carousel,Container } from 'react-bootstrap'
 
 class CitiesCarousel extends Component {
 

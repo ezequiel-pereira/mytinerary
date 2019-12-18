@@ -1,16 +1,37 @@
 import React, { Component } from 'react'
 import '../App.css';
-import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import userIcon from '../img/userIcon.png';
 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 
+import {connect} from 'react-redux'
+import {logout} from '../actions/loginAction'
+import PropTypes from 'prop-types'
+import {Redirect} from 'react-router-dom'
+
 class Menu extends Component {
 
-  logout() {
-    this.props.logout()
+  state = {
+    redirect: false
   }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      this.props.logout()
+      return <Redirect to='/login' />
+    }
+  }
+
+  /* logout() {
+    this.props.logout()
+  } */
 
   render() {
     if (this.props.user === null) {
@@ -36,8 +57,8 @@ class Menu extends Component {
         <Navbar bg="light" expand="lg">
           <NavDropdown title={<img src={userIcon} width="30px" height="30px" alt="user_image" />} id="basic-nav-dropdown">
             <p>{this.props.user}</p>
-            <LinkContainer to="/register"><NavDropdown.Item href="#action/3.1">Create account</NavDropdown.Item></LinkContainer>
-            <NavDropdown.Item href="#action/3.2" onClick={this.logout.bind(this)}>Logout</NavDropdown.Item>
+            {this.renderRedirect()}
+            <NavDropdown.Item onClick={this.setRedirect}>Logout</NavDropdown.Item>
           </NavDropdown>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -52,4 +73,12 @@ class Menu extends Component {
   }
 }
 
-export default Menu
+Menu.propTypes = {
+	logout: PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
+	login: state.login.login
+})
+
+export default connect(mapStateToProps, {logout})(Menu)
