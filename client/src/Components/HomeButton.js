@@ -8,7 +8,7 @@ class HomeButton extends Component {
   render() {
 		return(
 			<div className="Home-button">
-				<Link to="/home">
+				<Link to="/">
 					<img src={homeIcon} alt="home" />
 				</Link>
 			</div>

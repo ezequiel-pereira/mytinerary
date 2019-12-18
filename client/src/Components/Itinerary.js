@@ -12,7 +12,7 @@ import {getItinerariesByCity} from '../actions/itinerariesAction'
 import {getCityById} from '../actions/citiesAction'
 import PropTypes from 'prop-types'
 
-import { Container, Row, Col, Image, Accordion, Card, Jumbotron } from 'react-bootstrap'
+import { Container, Row, Col, Image, Accordion, Card, Jumbotron, Form } from 'react-bootstrap'
 
 class Itinerary extends Component {
 
@@ -77,6 +77,12 @@ class Itinerary extends Component {
 									<Col>
 										<Activity activity={itinerary.activity}></Activity>
 									</Col>
+								</Row>
+								<h6>Comentarios</h6>
+								<Row>
+									<Form.Group controlId="exampleForm.ControlTextarea1">
+										<Form.Control as="textarea"/>
+									</Form.Group>
 								</Row>
 							</Card.Body>
 							</Accordion.Collapse>

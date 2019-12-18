@@ -1,16 +1,16 @@
 import axios from 'axios'
-import {LOGIN, GOOGLE_LOGIN, LOGOUT, LOADING} from '../actions/types'
+import {LOGIN, LOGOUT, LOADING} from '../actions/types'
 var jwtDecode = require('jwt-decode');
 
 export const googleLogin = () => dispatch => {	
     console.log('login action');
-    /* console.log(token); */
     let token = localStorage.getItem('token')
+    /* console.log(token); */
     let user = jwtDecode(token)
     console.log(user);
     
     dispatch({
-        type:GOOGLE_LOGIN,
+        type:LOGIN,
         payload: user
     })
 }
@@ -38,7 +38,7 @@ export const login = (user) => dispatch => {
 export const logout = () => dispatch => {
     localStorage.removeItem('token')
     console.log('token borrado localstorage');
-    let user = {}
+    let user = null
     
     dispatch({
         type: LOGOUT,
