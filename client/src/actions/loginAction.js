@@ -36,8 +36,8 @@ export const login = (user) => dispatch => {
 }
 
 export const logout = () => dispatch => {
-    localStorage.removeItem('token')
-    console.log('token borrado localstorage');
+    localStorage.clear()
+    console.log('clear localstorage');
     let user = null
     
     dispatch({

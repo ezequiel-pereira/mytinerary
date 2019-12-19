@@ -10,9 +10,13 @@ import Menu from './Menu'
 import {connect} from 'react-redux'
 import {getItinerariesByCity} from '../actions/itinerariesAction'
 import {getCityById} from '../actions/citiesAction'
+import {addFavourite} from '../actions/favouriteAction'
 import PropTypes from 'prop-types'
 
 import { Container, Row, Col, Image, Accordion, Card, Jumbotron, Form } from 'react-bootstrap'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 class Itinerary extends Component {
 
@@ -26,6 +30,12 @@ class Itinerary extends Component {
 		let cityId = this.props.match.params.name
 		this.props.getCityById(cityId)
 		this.props.getItinerariesByCity(cityId)
+	}
+
+	addFavourite(itineraryId) {
+		let userId = localStorage.getItem('id')
+		console.log('localstorageid ' + userId)
+		this.addFavourite(itineraryId, userId)
 	}
 
   	render() {
@@ -53,7 +63,13 @@ class Itinerary extends Component {
 						</Col>
 						<Col xs={8}>
 							<Row>
-								<h6>{itinerary.title}</h6>
+								<Col>
+									<h6>{itinerary.title}</h6>
+								</Col>
+								<Col xs={2}>
+									<FontAwesomeIcon icon={faHeart} size="lg" /* color="red" */
+									onClick={addFavourite(itinerary._id)} />
+								</Col>
 							</Row>
 							<Row className="Itinerary-info">
 								<p>Likes: {itinerary.rating}</p>
@@ -99,11 +115,14 @@ class Itinerary extends Component {
 
 Itinerary.propTypes = {
 	getItinerariesByCity: PropTypes.func.isRequired,
+	getCityById: PropTypes.func.isRequired,
+	addFavourite: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
 	city: state.cities.city,
-	itineraries: state.itineraries.itineraries
+	itineraries: state.itineraries.itineraries,
+	favourites: state.favourites
 })
 
-export default connect(mapStateToProps, {getItinerariesByCity, getCityById})(Itinerary)
+export default connect(mapStateToProps, {getItinerariesByCity, getCityById, addFavourite})(Itinerary)
