@@ -4,17 +4,23 @@ const passport = require('../../passport')
 
 const userModel = require('../../models/User')
 
-router.post('/favorite/add', passport.authenticate("jwt", { session: false }), (req, res) => {
-	userModel.findOne({email: req.body.email})
+router.post('/favourite/add', /* passport.authenticate("jwt", { session: false }), */ (req, res) => {
+	console.log(req);
+	userModel.findOne({user: req.body.user})
 	.then(user => {
-		
-		})
-	}
-	).catch(e => console.log(e))
-	
-    
+		console.log('user BD ' + user);
+		res.json(user)
+	}).catch(e => console.log(e))
+})
 
-
+router.get('/favourites', /* passport.authenticate("jwt", { session: false }), */ (req, res) => {
+	console.log(req);
+	userModel.findOne({user: req.body.user})
+	.then(user => {
+		console.log('user BD ' + user);
+		res.json(user)
+	}).catch(e => console.log(e))
+})
 
 router.get("/test", passport.authenticate("jwt", { session: false }), (req, res) => {
 	userModel
