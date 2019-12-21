@@ -32,10 +32,9 @@ class Itinerary extends Component {
 		this.props.getItinerariesByCity(cityId)
 	}
 
-	addFavourite(itineraryId) {
+	clickFavourite(itineraryId) {
 		let userId = localStorage.getItem('id')
-		console.log('localstorageid ' + userId)
-		this.addFavourite(itineraryId, userId)
+		this.props.addFavourite(itineraryId, userId)
 	}
 
   	render() {
@@ -67,8 +66,7 @@ class Itinerary extends Component {
 									<h6>{itinerary.title}</h6>
 								</Col>
 								<Col xs={2}>
-									<FontAwesomeIcon icon={faHeart} size="lg" /* color="red" */
-									onClick={addFavourite(itinerary._id)} />
+									<FontAwesomeIcon icon={faHeart} size="lg" color="red" onClick={this.clickFavourite(itinerary._id)} />
 								</Col>
 							</Row>
 							<Row className="Itinerary-info">

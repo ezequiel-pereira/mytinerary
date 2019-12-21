@@ -43,11 +43,12 @@
 }
 
 .Carousel {
-	max-height: 40%;
+	width: 100%;
+	max-height: 100%;
 }
 
 .Carousel img {
-	width: 150px;
+	width: 100%;
 	margin: 5px;
 }
 
