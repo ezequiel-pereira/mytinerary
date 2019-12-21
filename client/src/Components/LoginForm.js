@@ -10,6 +10,8 @@ import {connect} from 'react-redux'
 import { login } from '../actions/loginAction';
 import PropTypes from 'prop-types'
 
+import {Redirect} from 'react-router-dom'
+
 class LoginForm extends Component {
 
 	constructor(props) {
@@ -17,7 +19,8 @@ class LoginForm extends Component {
 		this.state = {
 			email: '',
 			password: '',
-			remember: false
+			remember: false,
+			redirect: false
 		}
 		
 		this.handleInputChange = this.handleInputChange.bind(this)
@@ -37,11 +40,23 @@ class LoginForm extends Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		this.props.login({"email": this.state.email, "password": this.state.password})
-		
 	}
 
 	signGoogle() {
 		window.location.href='http://localhost:5000/auth/google'
+	}
+	
+	setRedirect = () => {
+		this.setState({
+			redirect: true
+		})
+	}
+
+	renderRedirect = () => {
+		if (this.state.redirect) {
+			this.props.logout()
+			return <Redirect to='/home' />
+		}
 	}
 
   	render() {
@@ -74,7 +89,7 @@ class LoginForm extends Component {
 							<Form.Label column xs={9} sm={2} className="text-left">Remember me</Form.Label>
 						</Form.Group>
 						<Button variant="primary" required className="mt-4 btn-block"
-							onClick={this.handleSubmit}>
+							onClick={this.handleSubmit, this.setRedirect}>
 							OK
 						</Button>
 					</Form>

@@ -1,4 +1,4 @@
-import { ADD_FAVOURITE } from '../actions/types'
+import { ADD_FAVOURITE, GET_FAVOURITES } from '../actions/types'
 
 const initialState = {
 	favourites: []
@@ -11,6 +11,12 @@ export default function (state = initialState, action) {
 				...state,
 				favourites: action.payload
 			}
+		
+		case GET_FAVOURITES:
+		return {
+			...state,
+			favourites: action.payload
+		}
 
 		default:
 			return {

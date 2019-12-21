@@ -2,12 +2,13 @@ import axios from 'axios'
 import {LOGIN, LOGOUT, LOADING} from '../actions/types'
 var jwtDecode = require('jwt-decode');
 
-export const googleLogin = () => dispatch => {	
-    console.log('login action');
+export const googleLogin = () => dispatch => {
     let token = localStorage.getItem('token')
-    /* console.log(token); */
     let user = jwtDecode(token)
-    console.log(user);
+    localStorage.setItem('token', token)
+    localStorage.setItem('id', user.id)
+    localStorage.setItem('profilePic', user.profilePic)
+    localStorage.setItem('auth', true)
     
     dispatch({
         type:LOGIN,
@@ -23,6 +24,7 @@ export const login = (user) => dispatch => {
         .then(res => {
             let token = res.data.token
             localStorage.setItem('token',`${token}`)
+            localStorage.setItem('auth',true)
             let decodedUser = jwtDecode(token)
             console.log(decodedUser);
             
