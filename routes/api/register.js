@@ -9,7 +9,7 @@ const { check, validationResult } = require('express-validator')
 
 const userModel = require('../../models/User')
 
-const key = require('../../keys.js').secretOrKey
+const key = require('../../config').secretOrKey
 const jwt = require('jsonwebtoken')
 
 router.post('/user/add', [

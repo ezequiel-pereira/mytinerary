@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const passport = require('../../passport')
 
-const key = require('../../keys.js').secretOrKey
+const key = require('../../config').secretOrKey
 const jwt = require('jsonwebtoken')
 
 router.get('/auth/google',

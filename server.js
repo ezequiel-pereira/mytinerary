@@ -6,7 +6,7 @@ const path = require('path')
 const cors = require('cors')
 
 //db config
-const db = require('./keys.js').mongoURI;
+const db = require('./config').mongoURI;
 
 //routes
 const cities = require('./routes/api/cities')
