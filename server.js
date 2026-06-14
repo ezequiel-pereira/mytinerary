@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
     })
 }
 
-mongoose.connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(db)
 .then(console.log('Database conected'))
 .catch(err => console.log(err))
 

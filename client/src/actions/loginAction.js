@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {LOGIN, LOGOUT, LOADING} from '../actions/types'
-var jwtDecode = require('jwt-decode');
+import { jwtDecode } from 'jwt-decode';
 
 export const googleLogin = () => dispatch => {
     let token = localStorage.getItem('token')
